@@ -2,6 +2,7 @@ package romasck.example.com.fragmentwithtabs;
 
 
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
@@ -25,18 +26,24 @@ public class TabsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View rootView = inflater.inflate(R.layout.fragment_tabs,container, false);
+        View rootView = inflater.inflate(R.layout.fragment_tabs, container, false);
 
+        mTabHost = (FragmentTabHost) rootView.findViewById(android.R.id.tabhost);
+        mTabHost.setup(getActivity(), getActivity().getSupportFragmentManager(), android.R.id.tabcontent);
 
-        mTabHost = (FragmentTabHost)rootView.findViewById(android.R.id.tabhost);
-        mTabHost.setup(getActivity(), getChildFragmentManager(), R.id.tabs_content);
+        TabHost.TabSpec tab1 = mTabHost.newTabSpec("tab1").setIndicator("Tab 1", null);
+        TabHost.TabSpec tab2 = mTabHost.newTabSpec("tab2").setIndicator("Tab 2", null);
 
-        TabHost.TabSpec tab1 = mTabHost.newTabSpec("tab1").setIndicator("Fragment 1");
-        TabHost.TabSpec tab2 = mTabHost.newTabSpec("tab2").setIndicator("Fragment 2");
         mTabHost.addTab(tab1, FragmentOne.class, null);
         mTabHost.addTab(tab2, FragmentTwo.class, null);
 
         return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mTabHost = null;
     }
 
 }
