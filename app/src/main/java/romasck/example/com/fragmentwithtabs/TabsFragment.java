@@ -23,7 +23,6 @@ public class TabsFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,14 +37,14 @@ public class TabsFragment extends Fragment {
                 .setIndicator(
                         getTabIndicator(mTabHost.getContext(),
                                 R.string.tab_chat_room_title,
-                                R.drawable.chat_room_tab)
+                                R.drawable.ic_chat_room_selector)
                 );
         TabHost.TabSpec tab2 = mTabHost
                 .newTabSpec("tab2")
                 .setIndicator(
                         getTabIndicator(mTabHost.getContext(),
                                 R.string.tab_chat_user_list_title,
-                                R.drawable.chat_user_list_tab)
+                                R.drawable.ic_user_list_selector)
                 );
 
         mTabHost.addTab(tab1, FragmentOne.class, null);
@@ -68,5 +67,4 @@ public class TabsFragment extends Fragment {
         super.onDestroyView();
         mTabHost = null;
     }
-
 }
